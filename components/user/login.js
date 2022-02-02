@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import authAxios from "../interceptors/interceptor";
+import { registerIndieID } from "native-notify";
+import axios from "axios";
 
 export default function Login() {
   const navigation = useNavigation();
@@ -23,11 +25,28 @@ export default function Login() {
 
     authAxios
       .post("login", collection)
-      .then((res) => {
+      .then(async (res) => {
         if (res.data === "User not exist" || res.data === "Password mismatch") {
           alert(res.data);
         } else {
-          localStorage.setItem("auth", JSON.stringify(res.data));
+          // Native Notify Indie Push Registration Code
+          await registerIndieID(
+            `${res.data.id}`,
+            1074,
+            "IESJ4vJMKa0qwwwqbSgT0z"
+          );
+          // End of Native Notify Code
+
+          axios.post(`https://app.nativenotify.com/api/indie/notification`, {
+            subID: `${res.data.id}`,
+            appId: 1074,
+            appToken: "IESJ4vJMKa0qwwwqbSgT0z",
+            title: "Congratulations!",
+            message: "You are login correctly",
+            pushData: { screenName: "TaipingNews" },
+          });
+
+          localStorage.setItem("auth", JSON.stringify(res.data.id));
           navigation.navigate("drawer");
         }
       })
