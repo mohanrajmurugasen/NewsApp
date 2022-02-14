@@ -52,12 +52,12 @@ export default function App() {
         <Stack.Screen
           name="login"
           component={Login}
-          options={{ title: "The Taiping Times" }}
+          options={{ title: "News360" }}
         />
         <Stack.Screen
           name="register"
           component={Register}
-          options={{ title: "The Taiping Times" }}
+          options={{ title: "News360" }}
         />
         <Stack.Screen
           name="content"

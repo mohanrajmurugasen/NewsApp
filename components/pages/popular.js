@@ -16,6 +16,7 @@ import authAxios from "../interceptors/interceptor";
 import baseURL from "../interceptors/baseurl";
 var getYouTubeID = require("get-youtube-id");
 import shareURL from "../interceptors/shareurl";
+import moment from "moment";
 
 const Popular = ({ navigation }) => {
   const [news, setNews] = useState([]);
@@ -64,7 +65,7 @@ const Popular = ({ navigation }) => {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
       >
-        {news.slice(0, 4).map((itm) =>
+        {news.slice(0, 6).map((itm) =>
           itm.publish ? (
             <ImageBackground
               source={{ uri: `${baseURL}${itm.image}` }}
@@ -89,7 +90,7 @@ const Popular = ({ navigation }) => {
                       fontFamily: "Roboto",
                       lineHeight: 25,
                       position: "relative",
-                      top: "100%",
+                      top: "130%",
                       height: 50,
                       overflow: "hidden",
                     }}
@@ -105,7 +106,7 @@ const Popular = ({ navigation }) => {
                     }}
                   >
                     <Text style={{ color: "white", marginTop: 7 }}>
-                      {itm.createdAt}
+                      {moment(new Date(itm.createdAt)).fromNow()}
                     </Text>
                     <View style={{ flexDirection: "row" }}>
                       <TouchableOpacity
@@ -199,7 +200,7 @@ const Popular = ({ navigation }) => {
                         }}
                       >
                         <Text style={{ color: "white", marginTop: 7 }}>
-                          {itms.createdAt}
+                          {moment(new Date(itms.createdAt)).fromNow()}
                         </Text>
                         <View style={{ flexDirection: "row" }}>
                           <TouchableOpacity
@@ -291,7 +292,7 @@ const Popular = ({ navigation }) => {
                   }}
                 >
                   <Text style={{ color: "gray", marginTop: 7 }}>
-                    {res.createdAt}
+                    {moment(new Date(res.createdAt)).fromNow()}
                   </Text>
                   <View style={{ flexDirection: "row" }}>
                     <TouchableOpacity

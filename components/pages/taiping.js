@@ -16,6 +16,7 @@ import authAxios from "../interceptors/interceptor";
 import { useNavigation } from "@react-navigation/native";
 import baseURL from "../interceptors/baseurl";
 import shareURL from "../interceptors/shareurl";
+import moment from "moment";
 
 const Taiping = (props) => {
   const navigation = useNavigation();
@@ -84,7 +85,7 @@ const Taiping = (props) => {
           marginVertical: 10,
         }}
       >
-        {props.myPropsName} / <Text style={{ color: "black" }}>India</Text>
+        {props.myPropsName} / <Text style={{ color: "black" }}>News360</Text>
       </Text>
       <Text
         style={{
@@ -98,7 +99,7 @@ const Taiping = (props) => {
           paddingVertical: 5,
         }}
       >
-        INDIA NEWS
+        NEWS360
       </Text>
       {news.map((itm) =>
         itm.category === props.myPropsName && itm.publish ? (
@@ -137,7 +138,7 @@ const Taiping = (props) => {
               style={{ flexDirection: "row", justifyContent: "space-between" }}
             >
               <Text style={{ color: "gray", marginTop: 7 }}>
-                {itm.createdAt}
+                {moment(new Date(itm.createdAt)).fromNow()}
               </Text>
               <View style={{ flexDirection: "row" }}>
                 <TouchableOpacity

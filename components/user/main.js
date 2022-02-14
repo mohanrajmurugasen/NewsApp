@@ -24,7 +24,7 @@ export const Main = () => {
     <View style={{ width: windowWidth }}>
       <View style={{ paddingHorizontal: 15, paddingVertical: 10 }}>
         <Text style={{ fontSize: 22, fontWeight: "700" }}>
-          Welcome to The Taiping Times
+          Welcome to The News360
         </Text>
         {token !== null ? (
           <TouchableOpacity onPress={logout}>
