@@ -18,10 +18,16 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.NewOne.app",
+      "package": "com.News360.app",
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
+      },
+      "config": {
+        "googleSignIn": {
+          "apiKey": "AIzaSyCA2QbKXmTzEg94z7btILrmlkwHTL7-kSk",
+          "certificateHash": "1ADB3A271DAFBCA9D67E76C2A587BFE4E541E621"
+        }
       },
       "googleServicesFile": "./google-services.json"
     },

@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   Share,
+  SafeAreaViewBase,
 } from "react-native";
 import "localstorage-polyfill";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -23,6 +24,7 @@ const Popular = ({ navigation }) => {
   const [category, setcategory] = useState([]);
   const [save, setsave] = useState(false);
   const [save1, setsave1] = useState(false);
+  const [save2, setsave2] = useState(null);
 
   useEffect(() => {
     authAxios.get("getAllNews").then((res) => {
@@ -58,6 +60,30 @@ const Popular = ({ navigation }) => {
 
   const width = Dimensions.get("window").width;
 
+  const saves = (x) => {
+    if (save === x) {
+      setsave(null);
+    } else {
+      setsave(x);
+    }
+  };
+
+  const saves1 = (x) => {
+    if (save1 === x) {
+      setsave1(null);
+    } else {
+      setsave1(x);
+    }
+  };
+
+  const saves2 = (x) => {
+    if (save2 === x) {
+      setsave2(null);
+    } else {
+      setsave2(x);
+    }
+  };
+
   return (
     <ScrollView style={{ width: width }}>
       <ScrollView
@@ -87,7 +113,6 @@ const Popular = ({ navigation }) => {
                       color: "white",
                       fontSize: 18,
                       fontWeight: "600",
-                      fontFamily: "Roboto",
                       lineHeight: 25,
                       position: "relative",
                       top: "130%",
@@ -111,13 +136,13 @@ const Popular = ({ navigation }) => {
                     <View style={{ flexDirection: "row" }}>
                       <TouchableOpacity
                         activeOpacity={0.6}
-                        onPress={() => setsave1(!save1)}
+                        onPress={() => saves(itm.id)}
                       >
-                        {save1 ? (
+                        {itm.id === save ? (
                           <Icon
                             name="bookmark"
                             style={{
-                              color: "red",
+                              color: "white",
                               fontSize: 25,
                               marginRight: 15,
                             }}
@@ -159,7 +184,15 @@ const Popular = ({ navigation }) => {
           <View
             style={{ paddingHorizontal: 10, paddingTop: 20, paddingBottom: 15 }}
           >
-            <Text style={{ fontSize: 20, fontWeight: "bold" }}>{itm.name}</Text>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "bold",
+                textTransform: "capitalize",
+              }}
+            >
+              {itm.name}
+            </Text>
           </View>
 
           {news
@@ -187,7 +220,6 @@ const Popular = ({ navigation }) => {
                           paddingBottom: 15,
                           fontSize: 18,
                           fontWeight: "600",
-                          fontFamily: "Roboto",
                           lineHeight: 25,
                         }}
                       >
@@ -205,13 +237,13 @@ const Popular = ({ navigation }) => {
                         <View style={{ flexDirection: "row" }}>
                           <TouchableOpacity
                             activeOpacity={0.6}
-                            onPress={() => setsave1(!save1)}
+                            onPress={() => saves1(itms.id)}
                           >
-                            {save1 ? (
+                            {itms.id === save1 ? (
                               <Icon
                                 name="bookmark"
                                 style={{
-                                  color: "red",
+                                  color: "white",
                                   fontSize: 25,
                                   marginRight: 15,
                                 }}
@@ -278,7 +310,6 @@ const Popular = ({ navigation }) => {
                         fontSize: 18,
                         fontWeight: "600",
                         color: "black",
-                        fontFamily: "Roboto",
                       }}
                     >
                       {res.title}
@@ -297,13 +328,13 @@ const Popular = ({ navigation }) => {
                   <View style={{ flexDirection: "row" }}>
                     <TouchableOpacity
                       activeOpacity={0.6}
-                      onPress={() => setsave(!save)}
+                      onPress={() => saves2(res.id)}
                     >
-                      {save ? (
+                      {res.id === save2 ? (
                         <Icon
                           name="bookmark"
                           style={{
-                            color: "red",
+                            color: "gray",
                             fontSize: 25,
                             marginRight: 15,
                           }}

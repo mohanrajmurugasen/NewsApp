@@ -4,6 +4,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import BottomTab from "../bottomtab/bottomTab";
 import { Custome } from "./custome";
 import Icon from "react-native-vector-icons/Ionicons";
+import { View, Text } from "react-native";
 
 const Drawer = createDrawerNavigator();
 
@@ -24,7 +25,23 @@ export function MyDrawer() {
         component={BottomTab}
         options={{
           drawerLabel: "Home",
-          title: "News360",
+          headerTitleAlign: "center",
+          headerTitle: () => {
+            return (
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Text
+                  style={{ fontSize: 20, fontWeight: "600", color: "black" }}
+                >
+                  News360
+                </Text>
+              </View>
+            );
+          },
           headerRight: () => (
             <TouchableOpacity>
               <Icon

@@ -1,34 +1,41 @@
 {
   "project_info": {
-    "project_number": "231332485494",
-    "project_id": "newone-39509",
-    "storage_bucket": "newone-39509.appspot.com"
+    "project_number": "271056760337",
+    "project_id": "news-app-341410",
+    "storage_bucket": "news-app-341410.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:231332485494:android:347e4610c83fa71e668257",
+        "mobilesdk_app_id": "1:271056760337:android:52a1993ebedb5027948bb0",
         "android_client_info": {
-          "package_name": "com.NewOne.app"
+          "package_name": "com.News360.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "231332485494-oqlkhjb7v0io3h9sr4lmcs6osrvh5agc.apps.googleusercontent.com",
+          "client_id": "271056760337-c6ia0p63k8bjvp36ian47jh5024099v1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD8iLUNsrZacR0jB6yok-ViD-rKL4S4YEE"
+          "current_key": "AIzaSyCA2QbKXmTzEg94z7btILrmlkwHTL7-kSk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "231332485494-oqlkhjb7v0io3h9sr4lmcs6osrvh5agc.apps.googleusercontent.com",
+              "client_id": "271056760337-c6ia0p63k8bjvp36ian47jh5024099v1.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "271056760337-p3r156o1fchdgb4iffbh21ufulcfb1q4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent"
+              }
             }
           ]
         }

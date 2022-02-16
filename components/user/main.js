@@ -18,8 +18,6 @@ export const Main = () => {
 
   const token = JSON.parse(localStorage.getItem("auth"));
 
-  console.log(token);
-
   return (
     <View style={{ width: windowWidth }}>
       <View style={{ paddingHorizontal: 15, paddingVertical: 10 }}>

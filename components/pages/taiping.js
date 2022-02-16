@@ -75,6 +75,14 @@ const Taiping = (props) => {
     }
   };
 
+  const saves = (x) => {
+    if (save === x) {
+      setsave(null);
+    } else {
+      setsave(x);
+    }
+  };
+
   return (
     <ScrollView style={{ width: width, paddingHorizontal: 10 }}>
       <Text
@@ -127,7 +135,6 @@ const Taiping = (props) => {
                     fontSize: 18,
                     fontWeight: "600",
                     color: "black",
-                    fontFamily: "Roboto",
                   }}
                 >
                   {itm.title}
@@ -143,12 +150,12 @@ const Taiping = (props) => {
               <View style={{ flexDirection: "row" }}>
                 <TouchableOpacity
                   activeOpacity={0.6}
-                  onPress={() => setsave(!save)}
+                  onPress={() => saves(itm.id)}
                 >
-                  {save ? (
+                  {itm.id === save ? (
                     <Icon
                       name="bookmark"
-                      style={{ color: "red", fontSize: 25, marginRight: 15 }}
+                      style={{ color: "gray", fontSize: 25, marginRight: 15 }}
                     />
                   ) : (
                     <Icon

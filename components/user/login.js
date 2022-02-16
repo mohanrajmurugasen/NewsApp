@@ -11,16 +11,17 @@ import { useNavigation } from "@react-navigation/core";
 import authAxios from "../interceptors/interceptor";
 import { registerIndieID } from "native-notify";
 import axios from "axios";
+import * as Google from "expo-google-app-auth";
 
 export default function Login() {
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState("");
+  const [emails, setEmails] = useState("");
   const [password, setPassword] = useState("");
 
   const login = async () => {
     const collection = {};
-    collection.email = email;
+    collection.emails = emails;
     collection.password = password;
 
     authAxios
@@ -60,6 +61,31 @@ export default function Login() {
   };
 
   const { width, height } = Dimensions.get("window");
+
+  const googleLogin = () => {
+    const config = {
+      iosClientId:
+        "271056760337-p3r156o1fchdgb4iffbh21ufulcfb1q4.apps.googleusercontent.com",
+      androidClientId:
+        "271056760337-4fjmupvtqvnvokra8sptts004l0gjs20.apps.googleusercontent.com",
+      androidStandaloneAppClientId:
+        "271056760337-pb3q2blji217bf8nurtet44b56lq4o6t.apps.googleusercontent.com",
+      scopes: ["profile", "email"],
+    };
+    Google.logInAsync(config)
+      .then((res) => {
+        const { type, user } = res;
+        if (type === "success") {
+          const { email, name, photoUrl } = user;
+          alert("Google signin successfull", "SUCCESS");
+          localStorage.setItem("auth", JSON.stringify(name));
+          navigation.navigate("drawer");
+        } else {
+          alert("Google signin was cancelled");
+        }
+      })
+      .catch((err) => console.log(err.message));
+  };
 
   return (
     <ScrollView
@@ -107,8 +133,8 @@ export default function Login() {
               fontSize: 16,
               color: "black",
             }}
-            value={email}
-            onChangeText={(txt) => setEmail(txt)}
+            value={emails}
+            onChangeText={(txt) => setEmails(txt)}
           />
         </View>
         <View style={{ paddingHorizontal: 20, paddingVertical: 10 }}>
@@ -146,7 +172,24 @@ export default function Login() {
             Login
           </Text>
         </TouchableOpacity>
-        <View style={{ alignItems: "center", marginVertical: 15 }}>
+        <TouchableOpacity
+          style={{ paddingHorizontal: 20, paddingVertical: 20, marginTop: 0 }}
+          onPress={googleLogin}
+        >
+          <Text
+            style={{
+              backgroundColor: "hsl(206,100%,52%)",
+              borderRadius: 8,
+              paddingVertical: 9,
+              textAlign: "center",
+              fontSize: 18,
+              color: "white",
+            }}
+          >
+            Google Login
+          </Text>
+        </TouchableOpacity>
+        <View style={{ alignItems: "center", marginVertical: 0 }}>
           <Text
             style={{
               borderColor: "gray",
