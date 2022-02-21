@@ -21,7 +21,7 @@ export default function Login() {
 
   const login = async () => {
     const collection = {};
-    collection.emails = emails;
+    collection.email = emails;
     collection.password = password;
 
     authAxios
@@ -33,15 +33,15 @@ export default function Login() {
           // Native Notify Indie Push Registration Code
           await registerIndieID(
             `${res.data.id}`,
-            1074,
-            "IESJ4vJMKa0qwwwqbSgT0z"
+            2146,
+            "FqP0rCc8mdwaVbjGYheMij"
           );
           // End of Native Notify Code
 
           axios.post(`https://app.nativenotify.com/api/indie/notification`, {
             subID: `${res.data.id}`,
-            appId: 1074,
-            appToken: "IESJ4vJMKa0qwwwqbSgT0z",
+            appId: 2146,
+            appToken: "FqP0rCc8mdwaVbjGYheMij",
             title: "Congratulations!",
             message: "You are login correctly",
             pushData: { screenName: "TaipingNews" },
